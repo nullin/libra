@@ -124,7 +124,7 @@ class ParseService {
         if (parameters.runid) {
             testRun = TestRun.findByName(parameters.runid)
         } else {
-            testRun = TestRun.findByName(TestRun.getLatestRunName())
+            testRun = TestRun.findByName(TestRun.getLatestRun().name)
         }
 
         if (!testRun) {

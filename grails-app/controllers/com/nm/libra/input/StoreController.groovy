@@ -26,7 +26,7 @@ class StoreController {
             return []
         }
         def fileInputStream = request.getFile("file").inputStream
-        def runName = params.runName?:TestRun.getLatestRunName()
+        def runName = params.runName?:TestRun.getLatestRun().name
         def result = parseService.parseInputStream(fileInputStream, params.runName)
         flash.message = result.error ? result.error : "Uploaded file successfully. Added ${result.added} & updated ${result.updated} results."
         log.info "Uploaded file and added test results to run '${runName}'"

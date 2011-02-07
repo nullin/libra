@@ -2,6 +2,7 @@ package com.nm.libra.test
 
 import com.nm.libra.test.TestResult;
 import com.nm.libra.test.TestRun;
+import com.nm.libra.utils.GoogleChartBuilderNew;
 
 class TestRunController {
 
@@ -9,6 +10,11 @@ class TestRunController {
 
     def index = {
         redirect(action: "list", params: params)
+    }
+
+    def current = {
+        //TODO: handle no test run in system
+        redirect(action: "show", params: [id: TestRun.getLatestRun().id])
     }
 
     def list = {
@@ -67,9 +73,37 @@ class TestRunController {
                     }
                 }
             }
+
+            def resultsMap = ['Pass': allTestsList.size() - failedTestsList.size() - skippedTestsList.size(),
+                'Fail': failedTestsList.size(), 'Skip': skippedTestsList.size() ]
+
+            def chart = new GoogleChartBuilderNew()
+            def result = chart.pie3DChart{
+              size(w:400, h:200)
+              data(encoding:'simple'){
+                  dataSet([1,2,3])
+              }
+              labels{
+                  label('1L')
+                  label('2L')
+                  //label('3L')
+              }
+              legend{
+                  label('Pass')
+                  label('Fail')
+                  //label('Skip')
+              }
+//              colors{
+//                  color('5CE65C')
+//                  color('FF3300')
+//                  //color('FFCC00')
+//              }
+            }
+
             [testRunInstance: testRunInstance, failedTestsList: failedTestsList,
                 skippedTestsList: skippedTestsList, failedConfigsList: failedConfigsList,
-                skippedConfigsList: skippedConfigsList, allTestsList: allTestsList]
+                skippedConfigsList: skippedConfigsList, allTestsList: allTestsList,
+                resultsMap: resultsMap, result:result]
         }
     }
 

@@ -5,11 +5,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="layout" content="main" />
         <title>TestRun ${testRunInstance.name}</title>
     </head>
     <body>
        <h1>Results for run '${testRunInstance.name}'</h1>
        <trl:flashMessage message="${flash.message}" />
+       <img alt="Test Results" src="${result.toString()}">
        <p>Total: <b>${allTestsList.size()}</b>,&nbsp;
        Pass: <b>${allTestsList.size() - failedTestsList.size() - skippedTestsList.size()}</b>,&nbsp;
        Fail: <b>${failedTestsList.size()}</b>,&nbsp;

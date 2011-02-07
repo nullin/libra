@@ -6,10 +6,12 @@ class TestRun {
     static constraints = {
         name(unique:true)
     }
+
     static mapping = {
         sort "name"
     }
-    def static getLatestRunName() {
+
+    def static getLatestRun() {
         def testRunList = list(sort:'dateCreated', order:'desc')
         return testRunList.size() == 0 ? null : testRunList[0]
     }

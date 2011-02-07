@@ -4,20 +4,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- <meta name="layout" content="main" /> -->
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'testRun.label', default: 'TestRun')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="bo_dy">
+<%--        <div class="body">--%>
             <h1>TestRuns</h1>
             <trl:flashMessage message="${flash.message}" />
             <div class="li_st">
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="name" title="${message(code: 'testRun.id.label', default: 'Name')}" />
-                            <g:sortableColumn property="count" title="${message(code: 'testRun.name.label', default: 'Result Count (Test Only)')}" />
+                            <th>Name</th>
+                            <th>Result Count<br/>(Test Only)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +33,6 @@
             <div class="paginate_Buttons">
                 <g:paginate total="${testRunInstanceTotal}" />
             </div>
-        </div>
+<%--        </div>--%>
     </body>
 </html>

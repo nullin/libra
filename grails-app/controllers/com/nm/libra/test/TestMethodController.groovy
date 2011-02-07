@@ -23,11 +23,25 @@ class TestMethodController {
 
     def asyncSearch = {
         def testMethodInstances = testMethodService.search(params)
-        def outStr = ""
-        for (testMethodInstance in testMethodInstances) {
-            outStr += "<tr><td><a href=\"" + createLink(action: "show", id:testMethodInstance.id) +
-            "\">" + testMethodInstance.name + "</a></td></tr>"
+
+        if (!testMethodInstances) {
+            render "<p>No matches found</p>"
+        } else {
+            def outStr = """
+            <table>
+               <thead>
+                   <tr>
+                       <th>Name</th>
+                   </tr>
+               </thead>
+               <tbody>
+            """
+            for (testMethodInstance in testMethodInstances) {
+                outStr += "<tr><td><a href=\"" + createLink(action: "show", id:testMethodInstance.id) +
+                "\">" + testMethodInstance.name + "</a></td></tr>"
+            }
+            outStr += "</tbody></table>"
+            render outStr
         }
-        render outStr
     }
 }

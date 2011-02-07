@@ -1,5 +1,4 @@
 
-
 <%@ page import="com.nm.libra.test.TestRun" %>
 <html>
     <head>
@@ -9,11 +8,11 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
+        <%-- <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
         </div>
-        <div class="body">
+        <div class="body">--%>
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <trl:flashMessage message="${flash.message}" />
             <g:hasErrors bean="${testRunInstance}">
@@ -42,6 +41,6 @@
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
             </g:form>
-        </div>
+<%--        </div>--%>
     </body>
 </html>
