@@ -118,3 +118,12 @@ form table, form table td, th {
 #ft p {
     text-align: center;
 }
+
+/* FLASH MESSAGE */
+.message {
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: .5em;
+    margin: .5em;
+}

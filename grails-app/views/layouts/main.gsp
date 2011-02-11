@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title><g:layoutTitle default="Grails"/></title>
+  <title><g:layoutTitle default="Libra"/></title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
   <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
@@ -15,7 +15,7 @@
       <img src="${resource(dir: 'images', file: 'spinner.gif')}" alt="${message(code: 'spinner.alt', default: 'Loading...')}"/>
     </div>
     <div id="logo">
-      <p>LIBRA</p>
+      <p><a href="${grailsApplication.config.serverURL}">LIBRA</a></p>
     </div>
   </div>
   <div id="bd" role="application">

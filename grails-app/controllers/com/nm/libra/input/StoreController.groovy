@@ -19,6 +19,7 @@ class StoreController {
         result = parseService.store(params)
         processed = true
       } catch (Exception e) {
+        //TODO: fix to be more specific exceptions like dup_violation or staleobject exception etc
         log.error "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + e.message
       }
       Thread.sleep 2000
@@ -45,7 +46,7 @@ class StoreController {
     def result = parseService.parseInputStream(fileInputStream, params.runName)
     flash.message = result.error ?
       result.error :
-      "Uploaded file successfully. Added ${result.added} & updated ${result.updated} results."
+      "Uploaded file successfully. Added ${result.added} & updated ${result.updated} results. Go to " + g.link(action:'show', controller:"testRun", id:TestRun.findByName(runName).id) {runName}
     log.info "Uploaded file and added test results to run '${runName}'"
     return []
   }
