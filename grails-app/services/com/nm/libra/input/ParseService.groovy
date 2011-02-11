@@ -9,6 +9,9 @@ import org.xml.sax.SAXException
 
 class ParseService {
 
+  def sessionFactory
+  def propertyInstanceMap = org.codehaus.groovy.grails.plugins.DomainClassGrailsPlugin.PROPERTY_INSTANCE_MAP
+
   static transactional = true
   static enum Supported_Formats {
     XML, TEXT
@@ -69,13 +72,15 @@ class ParseService {
         log.error "Failed to save run name ${runName}"
         testRun.errors.allErrors.each { log.error it }
         return [error: "Failed to save run name ${runName}"]
+      } else {
+        log.info "Created TestRun " + runName
       }
     }
 
     def fullResult = [added: 0, updated: 0]
     for (suiteNode in xmlDoc.suite) {
       def suiteName = suiteNode.@name.text()
-      log.debug 'SuiteName: ' + suiteName
+      log.info ' Working on Suite: ' + suiteName
       def suite = Suite.findByName(suiteName)
       if (!suite) {
         suite = new Suite(name: suiteName)
@@ -84,6 +89,7 @@ class ParseService {
           suite.errors.allErrors.each { log.error it }
           return [error: "Failed to save suite ${suiteName}"]
         }
+        log.info 'Created Suite: ' + suiteName
       }
 
       for (classNode in suiteNode.'**'.findAll { it.name() == "class"}) {
@@ -109,6 +115,8 @@ class ParseService {
           }
         }
       }
+
+      cleanUpGorm()
     }
     log.info "Parsed and added ${fullResult.added} / updated  ${fullResult.updated} Results"
     return fullResult
@@ -161,6 +169,13 @@ class ParseService {
             instanceName, is_test, status, startTime, endTime, duration)
     log.info "Added ${result.added} and Updated ${result.updated} result(s)"
     return result
+  }
+
+  def cleanUpGorm() {
+    def session = sessionFactory.currentSession
+    session.flush()
+    session.clear()
+    propertyInstanceMap.get().clear()
   }
 
   def storeTestMethodAndResult(testRun, suite, fqClassName, methodName,

@@ -5,10 +5,10 @@ package com.nm.libra.test
  */
 class Suite {
 
-  /** suite name  */
+  /** suite name */
   String name
 
-  /** list of test methods  */
+  /** list of test methods */
   static hasMany = [testMethods: TestMethod]
 
   static constraints = {
@@ -17,6 +17,7 @@ class Suite {
 
   static mapping = {
     sort "name"
+    name column: 'Suite_name', index: 'SuiteName_idx'
   }
 
   /**

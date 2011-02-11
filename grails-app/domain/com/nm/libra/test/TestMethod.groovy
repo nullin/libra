@@ -35,6 +35,12 @@ class TestMethod {
 
   static mapping = {
     sort "name"
+    //name column: 'tm_name', index: 'TestMethodName_idx'
+    suite column: 'tm_suite', index: 'TestMethod_idx'
+    packageName column: 'tm_pkgName', index: 'TestMethod_idx'
+    className column: 'tm_className', index: 'TestMethod_idx'
+    methodName column: 'tm_mthdName', index: 'TestMethod_idx'
+    instanceName column: 'tm_instName', index: 'TestMethod_idx'
   }
 
   /**

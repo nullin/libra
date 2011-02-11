@@ -58,7 +58,7 @@ class TestRunController {
 
   def list = {
     //sets max to 100, regardless of user input
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    params.max = Math.min(params.max ? params.int('max') : 25, 100)
     [testRunInstanceList: TestRun.list(params), testRunInstanceTotal: TestRun.count()]
   }
 

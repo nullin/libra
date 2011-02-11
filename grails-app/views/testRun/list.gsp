@@ -32,7 +32,7 @@
     </tbody>
   </table>
 <div class="paginate_Buttons">
-  <g:paginate total="${testRunInstanceTotal}"/>
+  <g:paginate max="25" total="${testRunInstanceTotal}"/>
 </div>
 <%--        </div>--%>
 </body>

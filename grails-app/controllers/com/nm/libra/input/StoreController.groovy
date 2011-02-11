@@ -1,6 +1,7 @@
 package com.nm.libra.input
 
 import com.nm.libra.test.TestRun
+import groovy.io.FileType
 
 class StoreController {
 
@@ -30,11 +31,25 @@ class StoreController {
   }
 
   def storeall = {
-    parseService.parse('/Users/nullin/Downloads/testng/testng-results-long.xml', "run0")
-    parseService.parse('/Users/nullin/Downloads/testng/testng-results-1.xml', "run1")
-    parseService.parse('/Users/nullin/Downloads/testng/testng-results-2.xml', "run2")
-    parseService.parse('/Users/nullin/Downloads/testng/testng-results-4.xml', "run4")
+    String relPath = '/Users/nullin/Downloads/testng/sample/'
+    parseService.parse(relPath + 'testng-results-long.xml', "run0")
+    parseService.parse(relPath + 'testng-results-1.xml', "run1")
+    parseService.parse(relPath + 'testng-results-2.xml', "run2")
+    parseService.parse(relPath + 'testng-results-4.xml', "run4")
     render('Done with all')
+  }
+
+  def storeBig = {
+    String relPath = '/Users/nullin/Downloads/testng/dump/'
+    String outStr = ''
+    def dumpDir = new File(relPath)
+    def filterXMLFiles = ~/testng-results\.xml$/
+    dumpDir.traverse(type: FileType.FILES, nameFilter: filterXMLFiles) {
+      def dirName = it.parentFile.name
+      log.info dirName
+      parseService.parse(it.absolutePath, dirName)
+    }
+    render(outStr + ' Done with all')
   }
 
   def upload = {
