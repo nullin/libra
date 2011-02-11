@@ -10,6 +10,8 @@ class TestRun {
   /** Creation date */
   Date dateCreated
 
+  static hasMany = [testResults : TestResult]
+
   static constraints = {
     name(unique: true)
   }

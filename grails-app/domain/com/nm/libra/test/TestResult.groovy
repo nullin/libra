@@ -17,7 +17,7 @@ class TestResult {
   /** Test run this result belongs to  */
   TestRun testRun
   /** the test method  */
-  static belongsTo = [testMethod: TestMethod]
+  static belongsTo = [testMethod: TestMethod, testRun: TestRun]
   /** test status  */
   String status
   /** bug number, if any  */
@@ -33,6 +33,7 @@ class TestResult {
 
   static constraints = {
     testRun(nullable: false)
+    comments(nullable: true)
     //TODO: add status constraints
     //TODO: add constraint for startTime <= endTime ?
   }
