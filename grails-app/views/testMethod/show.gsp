@@ -1,4 +1,5 @@
 <%@ page import="com.nm.libra.test.TestMethod" %>
+<%@ page import="com.nm.libra.test.TestResult" %>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -23,18 +24,19 @@
 <table>
   <thead>
   <tr>
-    <td>Test Run</td>
-    <td>Status</td>
-    <td>Duration (ms)</td>
-    <td>Started At</td>
-    <td>Ended At</td>
+    <th>Test Run</th>
+    <th>Status</th>
+    <th>Duration (ms)</th>
+    <th>Started At</th>
+    <th>Ended At</th>
   </tr>
   </thead>
   <tbody>
-  <g:each in="${testMethodInstance.testResults}" status="i" var="testResult">
+  <g:each in="${TestResult.findAllByTestMethod(testMethodInstance).sort(){it.startTime}}"
+          status="i" var="testResult">
     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
     <td><g:link action="show" controller="testRun" id="${testResult.testRun.id}">${testResult.testRun.name}</g:link></td>
-    <td>${testResult.status}</td>
+    <td class="st_${testResult.status.toLowerCase()}">${testResult.status}</td>
     <td>${testResult.duration}</td>
     <td>${new Date(testResult.startTime)}</td>
     <td>${new Date(testResult.endTime)}</td>

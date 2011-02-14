@@ -10,6 +10,7 @@
 <trl:flashMessage message="${flash.message}"/>
 <p><b>WARNING:</b> Unless TestRun is specified, it will upload/overwrite results
 in latest test run.</p>
+<br/>
 <div>
   <g:uploadForm action="upload">
     <table>

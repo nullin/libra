@@ -16,7 +16,7 @@
     <tr>
       <th>Name</th>
       <th>Created</th>
-      <th>Result Count<br/>(Test Only)</th>
+      <th>Result Count</th>
       <th></th>
     </tr>
     </thead>
@@ -26,12 +26,18 @@
         <td><g:link action="show" id="${testRunInstance.id}">${fieldValue(bean: testRunInstance, field: "name")}</g:link></td>
         <td>${fieldValue(bean: testRunInstance, field: "dateCreated")}</td>
         <td>${TestResult.executeQuery("Select count(*) from TestResult tr where tr.testMethod.isTest = true and tr.testRun.id = ?", [testRunInstance.id])[0]}</td>
-        <td><g:link action="edit" id="${testRunInstance.id}">Edit/Delete</g:link></td>
+        <td><g:link action="edit" id="${testRunInstance.id}" >
+              <img src="<g:resource file="images/skin/database_edit.png"/>" title="Edit"/>
+            </g:link>&nbsp;
+            <g:link action="delete" id="${testRunInstance.id}" >
+              <img src="<g:resource file="images/skin/database_delete.png"/>" title="Delete"/>
+            </g:link>
+        </td>
       </tr>
     </g:each>
     </tbody>
   </table>
-<div class="paginate_Buttons">
+<div class="paginateButtons">
   <g:paginate max="25" total="${testRunInstanceTotal}"/>
 </div>
 <%--        </div>--%>

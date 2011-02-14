@@ -3,12 +3,12 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Search TestMethods</title>
+  <title>Search Test Methods</title>
   <meta name="layout" content="main"/>
   <g:javascript library="prototype"/>
 </head>
 <body>
-<h1>Search for test methods</h1>
+<h1>Search for Test/Configuration Methods</h1>
 <trl:flashMessage message="${flash.message}"/>
 <g:form>
   <table>

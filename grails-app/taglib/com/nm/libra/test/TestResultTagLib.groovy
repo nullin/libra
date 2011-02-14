@@ -25,7 +25,18 @@ class TestResultTagLib {
         }
         out << "</td>"
         if (showStatus) {
-          out << "<td>" + testResult.status + "</td>"
+          def cssClass = ""
+          def testStatus = testResult.status.toUpperCase()
+          if (testStatus == TestResult.PASS) {
+            cssClass = "st_pass"
+          } else if (testStatus == TestResult.FAIL) {
+            cssClass = "st_fail"
+          } else if (testStatus == TestResult.SKIP) {
+            cssClass = "st_skip"
+          } else {
+            cssClass = "st_not_run"
+          }
+          out << "<td class=\"center ${cssClass}\">" + testResult.status + "</td>"
         }
         out << "<td>" + DateUtil.getISODateAsString(new Date(testResult.startTime)) + "</td>"
         out << "<td>" + DateUtil.getISODateAsString(new Date(testResult.endTime)) + "</td>"
