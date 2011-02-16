@@ -24,7 +24,7 @@ class TestMethod {
   static hasMany = [testResults: TestResult]
   /** used for displaying test name in UI  */
   static transients = ['displayName']
-
+  static searchable = true
   static constraints = {
     packageName(blank: false, nullable: false)
     className(blank: false, nullable: false)

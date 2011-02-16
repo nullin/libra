@@ -38,8 +38,9 @@
       </div>
       <div id="search" role="search" class="search">
         <!-- Maybe move this code out someplace else -->
-        <g:form action="search" controller="search">
-          <g:textField name="query"/> <g:submitButton name="search" value="Search" class="button"/>
+        <g:form action="index" controller="search">
+          <g:textField name="q" id="query" value="${params.q?:''}"/>
+          <g:submitButton name="search" value="Search" class="button"/>
         </g:form>
         <!-- Maybe move this code out someplace else -->
       </div>

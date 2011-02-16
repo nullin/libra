@@ -11,7 +11,7 @@ class TestRun {
   Date dateCreated
 
   static hasMany = [testResults : TestResult]
-
+  static searchable = true
   static constraints = {
     name(unique: true)
   }

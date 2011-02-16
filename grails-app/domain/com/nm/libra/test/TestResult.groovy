@@ -31,6 +31,7 @@ class TestResult {
   /** approximate end time  */
   long endTime
 
+  static searchable = true
   static constraints = {
     testRun(nullable: false)
     comments(nullable: true)

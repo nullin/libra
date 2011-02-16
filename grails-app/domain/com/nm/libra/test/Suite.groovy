@@ -10,7 +10,7 @@ class Suite {
 
   /** list of test methods */
   static hasMany = [testMethods: TestMethod]
-
+  static searchable = true
   static constraints = {
     name(blank: false, nullable: false, unique: true)
   }
