@@ -11,7 +11,7 @@
 <%--        <div class="body">--%>
 <h1>TestRuns</h1>
 <trl:flashMessage message="${flash.message}"/>
-  <table>
+  <table id="tr_list">
     <thead>
     <tr>
       <th>Name</th>

@@ -1,9 +1,5 @@
 package com.nm.libra.test
 
-
-import com.nm.libra.test.TestMethod;
-import com.nm.libra.test.TestResult;
-
 class TestMethodService {
 
   static transactional = true
@@ -37,7 +33,7 @@ class TestMethodService {
         ilike("name", '%' + testname + '%')
       }
     }
-    log.info "Test Method List: " + tmList
+    log.info "Found " + tmList.size() + " results"
     return tmList
   }
 

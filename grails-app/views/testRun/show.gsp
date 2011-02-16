@@ -6,6 +6,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="main"/>
   <title>TestRun ${testRunInstance.name}</title>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#all_tests').dataTable();
+    } );
+  </script>
 </head>
 <body>
   <h1>Results for run '${testRunInstance.name}'</h1>
@@ -25,6 +30,6 @@
   <h2>Skipped Configurations</h2>
   <trl:displayTestResultsTable results="${testRunCmd.skippedConfigList}"/>
   <h2>All Tests</h2>
-  <trl:displayTestResultsTable results="${testRunCmd.allTestList}" showStatus="true"/>
+  <trl:displayTestResultsTable results="${testRunCmd.allTestList}" table_id="all_tests" showStatus="true"/>
 </body>
 </html>

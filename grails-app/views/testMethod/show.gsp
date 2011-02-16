@@ -5,13 +5,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="main"/>
   <title>TestMethod ${testMethodInstance.name}</title>
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+          $('#result_list').dataTable();
+      } );
+  </script>
 </head>
 <body>
 <h1>${testMethodInstance.displayName}</h1>
 <trl:flashMessage message="${flash.message}"/>
 <p>
   Health: <b>${passRate}%</b><br/>
-  Suite: <b>${testMethodInstance.suite.name}</b><br/>
+  Suite: <b><g:link action="show" controller="suite" id="${testMethodInstance.suite.id}">${testMethodInstance.suite.name}</g:link></b><br/>
   Package: <b>${testMethodInstance.packageName}</b><br/>
   Class: <b>${testMethodInstance.className}</b><br/>
   Method: <b>${testMethodInstance.methodName}</b><br/>
@@ -21,7 +26,7 @@
 </p>
 
 <h2>Results</h2>
-<table>
+<table id="result_list">
   <thead>
   <tr>
     <th>Test Run</th>

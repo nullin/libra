@@ -2,10 +2,16 @@
 <html>
 <head>
   <title><g:layoutTitle default="Libra"/></title>
-  <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
   <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
+
+  <!-- Datatables CSS -->
+  <link rel="stylesheet" href="${resource(dir: 'js/datatables/media/css', file: 'demo_table.css')}"/>
+
+  <g:javascript library="jquery" plugin="jquery"/>
+  <!-- Datatables js -->
+  <script type="text/javascript" language="javascript" src="${resource(dir: 'js/datatables/media/js/', file: 'jquery.dataTables.js')}"></script>
+  <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"/>
   <g:layoutHead/>
-  <g:javascript library="application"/>
 </head>
 <body>
 <div class="wrapper">

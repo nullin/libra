@@ -1,6 +1,6 @@
 package com.nm.libra.test
 
-import com.nm.libra.test.TestMethod;
+import grails.converters.JSON
 
 class TestMethodController {
 
@@ -23,25 +23,14 @@ class TestMethodController {
 
   def asyncSearch = {
     def testMethodInstances = testMethodService.search(params)
-
-    if (!testMethodInstances) {
-      render "<p>No matches found</p>"
-    } else {
-      def outStr = """
-            <table>
-               <thead>
-                   <tr>
-                       <th>Name</th>
-                   </tr>
-               </thead>
-               <tbody>
-            """
+    def outData = []
+    if (testMethodInstances) {
       for (testMethodInstance in testMethodInstances) {
-        outStr += "<tr><td><a href=\"" + createLink(action: "show", id: testMethodInstance.id) +
-                "\">" + testMethodInstance.name + "</a></td></tr>"
+        outData.add(["<a href=\"" + createLink(action: "show", id: testMethodInstance.id) + "\">" + testMethodInstance.name + "</a>",
+          "<a href=\"" + createLink(action: "show", id: testMethodInstance.suite.id) +
+                "\">" + testMethodInstance.suite.name + "</a>"])
       }
-      outStr += "</tbody></table>"
-      render outStr
     }
+    render ([aaData: outData] as JSON)
   }
 }

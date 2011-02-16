@@ -8,13 +8,18 @@ class TestResultTagLib {
   def displayTestResultsTable = { attrs ->
     def showStatus = attrs.showStatus ?: false
     if (attrs.results) {
-      out << "<table><thead><tr>"
-      out << "<td>Name</td>"
-      if (showStatus) {
-        out << "<td>Status</td>"
+      if (attrs.table_id) {
+        out << "<table id=\"${attrs.table_id}\">"
+      } else {
+        out << "<table>"
       }
-      out << "<td>Started At</td>"
-      out << "<td>Finished At</td>"
+      out << "<thead><tr>"
+      out << "<th>Name</th>"
+      if (showStatus) {
+        out << "<th>Status</th>"
+      }
+      out << "<th>Started At</th>"
+      out << "<th>Finished At</th>"
       out << "</tr></thead><tbody>"
       def i = 0
       for (testResult in attrs.results) {
